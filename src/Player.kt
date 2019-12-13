@@ -88,6 +88,19 @@ class Computer : Player() {
 
     // 最後に2枚目のカードがどれだったのかを表示する
     fun flipSecondCard() = hands[1].toString()
+
+    // 最大値を超えるまで引き続ける
+    fun drawUntilLimit(deck: Deck) = drawUntilLimit(mutableListOf(), deck)
+
+    private tailrec fun drawUntilLimit(results: MutableList<String>, deck: Deck): List<String> {
+        return if (isOver()) {
+            results
+        } else {
+            results.add(draw(deck))
+            drawUntilLimit(results, deck)
+        }
+    }
+
 }
 
 fun main() {
