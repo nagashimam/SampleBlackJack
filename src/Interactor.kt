@@ -38,8 +38,38 @@ class Interactor(private val presenter: Presenter) {
 
     // プレーヤーが引くのをやめ、コンピューターの分を引く
     fun stopDrawing() {
-        presenter.showMessage("もう引きません")
-        presenter.promptInput()
+        // 表示していなかったコンピューターの2枚目の手札を表示
+        presenter.showMessage(computer.flipSecondCard())
+        // 上限を超えるまでコンピューターが手札を引く
+        computer.drawUntilLimit(deck).forEach { result -> presenter.showMessage(result) }
+
+        // それぞれ最終得点を表示
+        showFinalScore(computer)
+        showFinalScore(human)
+
+        // 結果を表示
+        presenter.showMessage(
+            if (isHumanWin()) {
+                "あなたの勝ちです。"
+            } else {
+                "あなたの負けです。"
+            }
+        )
+    }
+
+    // 人間が勝ったかどうかを判定
+    private fun isHumanWin(): Boolean {
+        return computer.calculateScore().let { computerScore ->
+            when {
+                computerScore > 21 -> true
+                else -> computerScore < human.calculateScore()
+            }
+        }
+    }
+
+    // プレーヤーの最終得点を表示
+    private fun showFinalScore(player: Player) {
+        presenter.showMessage("${player.whichSide()}の最終得点:${player.calculateScore()}")
     }
 
 }
