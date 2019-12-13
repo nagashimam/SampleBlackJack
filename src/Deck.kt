@@ -94,7 +94,3 @@ class Deck {
 //    }
 
 }
-
-fun main() {
-    print(Deck().deck.forEach { println(it) })
-}
