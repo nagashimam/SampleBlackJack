@@ -89,20 +89,3 @@ class Computer : Player() {
     // 最後に2枚目のカードがどれだったのかを表示する
     fun flipSecondCard() = hands[1].toString()
 }
-
-fun main() {
-    val deck = Deck()
-    println("****あなたのカード始め****")
-    printScoreUntilScoreIsOver(deck, Human())
-    println("****あなたのカード終わり****")
-    println("****コンピューターのカード始め****")
-    printScoreUntilScoreIsOver(deck, Computer())
-    println("****コンピューターのカード終わり****")
-}
-
-private tailrec fun printScoreUntilScoreIsOver(deck: Deck, player: Player) {
-    if (player.isOver()) return
-    println(player.draw(deck))
-    println("現在の${player.whichSide()}の得点は${player.calculateScore()}")
-    printScoreUntilScoreIsOver(deck, player)
-}
