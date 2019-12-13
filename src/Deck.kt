@@ -1,3 +1,5 @@
+import java.lang.IllegalStateException
+
 /**
  * トランプのマークを表すEnum
  */
@@ -58,6 +60,14 @@ class Deck {
         // そのままだと順番通りになっているので、シャッフルして返す
         return sortedDeck.apply {
             shuffle()
+        }
+    }
+
+    fun drawCard(): Card {
+        return if (deck.isEmpty()) {
+            throw IllegalStateException("カードがもうありません")
+        } else {
+            deck.removeAt(0)
         }
     }
 
