@@ -4,13 +4,13 @@ class Interactor(private val presenter: Presenter) {
 
     // 得点を表示する
     fun showScore() {
-        presenter.showMessage("現在の得点を見ます")
+        presenter.showMessage("現在の得点:\n${human.calculateScore()}")
         presenter.promptInput()
     }
 
     // 手札を表示する
     fun showHands() {
-        presenter.showMessage("現在の手札を見ます")
+        presenter.showMessage("現在の手札:\n${human.handsToString()}")
         presenter.promptInput()
     }
 
