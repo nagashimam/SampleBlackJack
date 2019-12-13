@@ -1,4 +1,6 @@
 class Interactor(private val presenter: Presenter) {
+    private val human = Human()
+    private val deck = Deck()
 
     // 得点を表示する
     fun showScore() {
@@ -14,7 +16,7 @@ class Interactor(private val presenter: Presenter) {
 
     // 手札を引く
     fun draw() {
-        presenter.showMessage("手札を引きます")
+        presenter.showMessage(human.draw(deck))
         presenter.promptInput()
     }
 
