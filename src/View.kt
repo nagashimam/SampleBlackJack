@@ -15,6 +15,10 @@ class View {
                 promptInput()
             }
     }
+
+    // コンソールにメッセージを表示する
+    // グラフィックを付ける際には、Javascriptでいうalert()にする
+    fun showMessage(msg : String) = println(msg)
 }
 
 fun main() {
