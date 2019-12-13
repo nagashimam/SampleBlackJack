@@ -40,7 +40,7 @@ class Card(val suit: Suit, val number: Number) {
 class Deck {
 
     // 山札
-    val deck: MutableList<Card> by lazy { initializeDeck() }
+    private val deck: MutableList<Card> by lazy { initializeDeck() }
 
     // 52枚の山札を作る
     private fun initializeDeck(): MutableList<Card> {
