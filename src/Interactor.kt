@@ -17,7 +17,11 @@ class Interactor(private val presenter: Presenter) {
     // 手札を引く
     fun draw() {
         presenter.showMessage(human.draw(deck))
-        presenter.promptInput()
+        if (human.isOver()) {
+            presenter.showMessage("現在の得点:\n${human.calculateScore()}\nあなたの負けです。")
+        } else {
+            presenter.promptInput()
+        }
     }
 
     // プレーヤーが引くのをやめ、コンピューターの分を引く
