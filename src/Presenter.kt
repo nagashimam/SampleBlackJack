@@ -4,6 +4,11 @@
 class Presenter(private val view: View) {
     private val interactor = Interactor(this)
 
+    // 開始時の処理
+    fun start(){
+        interactor.setUp()
+    }
+
     // 入力をIOから受け取る
     fun receiveInput(input: String) {
         when (input) {

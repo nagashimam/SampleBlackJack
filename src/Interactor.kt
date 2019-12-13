@@ -1,6 +1,18 @@
 class Interactor(private val presenter: Presenter) {
     private val human = Human()
     private val deck = Deck()
+    private val computer = Computer()
+
+    // 初期化処理
+    fun setUp() {
+        with(presenter) {
+            showMessage(human.draw(deck))
+            showMessage(human.draw(deck))
+            showMessage(computer.draw(deck))
+            showMessage(computer.draw(deck))
+            promptInput()
+        }
+    }
 
     // 得点を表示する
     fun showScore() {

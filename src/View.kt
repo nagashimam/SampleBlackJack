@@ -4,6 +4,11 @@
 class View {
     private val presenter = Presenter(this)
 
+    // Viewクラスを初期化した瞬間に実行される処理
+    init {
+        presenter.start()
+    }
+
     // 入力をしてもらうためのメッセージを表示する
     // 入力は自分では処理せず、presenterに投げる
     fun promptInput() {
